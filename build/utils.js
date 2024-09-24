@@ -9,7 +9,7 @@ const parseConnet = (commentFrowRequest) => {
     return commentFrowRequest;
 };
 const isString = (string) => {
-    return typeof string === "string";
+    return typeof string != "string";
 };
 const parseDate = (dateFromRequest) => {
     if (!isString(dateFromRequest) || !isDate(dateFromRequest)) {
