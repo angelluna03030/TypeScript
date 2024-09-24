@@ -2,7 +2,7 @@ import express from "express";  //EsModules
 /*cosnt express = require('express') --> commonjs */
 import * as diaryServices from "../services/diaryServices"
 import * as _ from "..";
-
+import {toNewDiaryEntry}from "../utils";
 const routes = express.Router();
 routes.get("/" ,(_req, res)=>{
 res.send(diaryServices.getEntriesWithoutSensitiveInfo())
@@ -16,7 +16,7 @@ routes.get("/:id" ,(req, res)=>{
 routes.post("/" ,(req, res)=>{
     try {
         const newDiaryEntry = toNewDiaryEntry(req.body);
-        const addDiaryEntry = diaryServices.addDiary({newDiaryEntry})
+        const addDiaryEntry = diaryServices.addDiary(newDiaryEntry)
         res.json(addDiaryEntry);
     } catch (e) {
         res.status(400).send(e);
